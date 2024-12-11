@@ -2,7 +2,7 @@
 import { useAuth } from '@clerk/nextjs'
 
 export default function Example() {
-  const { isLoaded, userId, sessionId, getToken } = useAuth()
+  const { isLoaded, userId, sessionId } = useAuth()
 
   // In case the user signs out while on the page.
   if (!isLoaded || !userId) {
