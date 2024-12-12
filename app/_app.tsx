@@ -3,13 +3,16 @@ import { ClerkProvider } from '@clerk/nextjs';
 import { AppProps } from 'next/app';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const clerkPubKey =process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || "fallback-key"
+  const clerkPubKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
-  if (!clerkPubKey || clerkPubKey === "fallback-key") {
-    console.warn("Using fallback key. Check your environment variables.");}
+  console.log('Clerk Publishable Key:', clerkPubKey);
+
 
   if (!clerkPubKey) {
-    throw new Error('Clerk publishable key is missing. Please set NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY in your environment variables.');
+    console.error(
+      'Clerk publishable key is missing. Please set NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY in your environment variables.'
+    );
+    return <div>Error: Missing Clerk publishable key.</div>; // Fallback UI
   }
 
   return (
